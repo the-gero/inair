@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
+use Auth;
+use App\Files;
+use App\Trash;
+use File;
+use Storage;
 class FilesController extends Controller
 {
     /**
@@ -11,9 +16,15 @@ class FilesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        return view('files.myfiles');
+        $files = Files::orderBy('created_at','desc')->paginate(10);
+
+        return view('files.myfiles')->with('files',$files);                                                                                                           
     }
 
     /**
@@ -25,7 +36,12 @@ class FilesController extends Controller
     {
         return view('files.upload');
     }
-
+    public function getDownload(Request $request)
+    {
+        
+        $file="storage/".Auth::id()."/info.pdf";
+        return Response::download($file);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -34,7 +50,25 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasFile('file')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('file')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('file')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('file')->storeAs(''.Auth::id().'/files', $fileNameToStore);
+            $post = new Files;
+            $post->file = $fileNameToStore;
+            $post->type = $extension;
+            $post->save();
+            return back()->with('success', 'Uploaded');
+        }
+        
+        
     }
 
     /**
@@ -83,11 +117,28 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        
+        $filename = Files::find($id);
+               
+        File::delete(''.Auth::id().$filename);
     }
+    public function m2t($id)
+    {
+        $filename = Files::find($id);
+        $move = Storage::move(Auth::id().'/files'.'/'.$filename->file,Auth::id().'/trash'.'/'.$filename->file);
+        if(Storage::exists(Auth::id().'/trash'.'/'.$filename->file))
+            {
+                $filename->delete();
+                $file = new Trash;
+                $file->file = $filename->file;
+                $file->type = $filename->type;
+                $file->save();
 
+            }
+        return back()->with('error','Moved to trash');
+    }
     public function trash()
     {
-        return view('files.trash');
+        $trash = Trash::orderBy('created_at','desc')->paginate(10);
+        return view('files.trash')->with('trash',$trash);
     }
 }

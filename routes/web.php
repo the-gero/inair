@@ -21,4 +21,6 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/help', 'HomeController@help');
 Route::get('/file/manage', 'FilesController@manage');
 Route::get('/file/trash', 'FilesController@trash');
+Route::get('/file/m2t/{id}', 'FilesController@m2t');
+Route::get('/download', 'FilesController@getDownload');
 Route::resource('/file','FilesController');

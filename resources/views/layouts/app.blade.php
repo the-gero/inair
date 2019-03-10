@@ -15,7 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
@@ -130,7 +130,7 @@
               
         <main class="py-4 col" onclick="closeNav()" href="javascript:void(0)" >
             <div class="container" style="margin-top:10vh " onclick="closeNav()" href="javascript:void(0)" >
-
+                @include('inc.messages')
             @yield('content')
             </div>
         </main>
