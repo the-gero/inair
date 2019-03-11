@@ -6,7 +6,10 @@ Upload files here
         <div class="form-group">
         {{Form::file('file')}}
         </div>
-        {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
+       <button type="submit" onclick="return confirm('Are you sure to Upload this file ?');" style="border: 0; background: none;">
+            <i class="fa fa-upload" style="color:white" aria-hidden="true"></i>
+          </button>
     {!! Form::close() !!}
+    
 @endsection
 

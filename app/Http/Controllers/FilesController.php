@@ -117,9 +117,10 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        $filename = Files::find($id);
-               
-        File::delete(''.Auth::id().$filename);
+        $filename = Trash::find($id);
+        $delete = Storage::delete(Auth::id().'/trash'.'/'.$filename->file);
+        $filename->delete();
+        return back()->with('success','Deleted permanently');
     }
     public function m2t($id)
     {
@@ -136,6 +137,23 @@ class FilesController extends Controller
             }
         return back()->with('error','Moved to trash');
     }
+
+    public function m2f($id)
+    {
+        $filename = Trash::find($id);
+        $move = Storage::move(Auth::id().'/trash'.'/'.$filename->file,Auth::id().'/files'.'/'.$filename->file);
+        if(Storage::exists(Auth::id().'/files'.'/'.$filename->file))
+            {
+                $filename->delete();
+                $file = new Files;
+                $file->file = $filename->file;
+                $file->type = $filename->type;
+                $file->save();
+
+            }
+        return back()->with('error','Moved to My Files');
+    }
+
     public function trash()
     {
         $trash = Trash::orderBy('created_at','desc')->paginate(10);
