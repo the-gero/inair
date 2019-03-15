@@ -159,4 +159,19 @@ class FilesController extends Controller
         $trash = Trash::orderBy('created_at','desc')->paginate(10);
         return view('files.trash')->with('trash',$trash);
     }
+
+    public function imgprev(Request $request)
+        {
+        if($request->ajax())
+        {
+       
+        if($request->search)
+        {
+            $img = Image::make($request->search);
+            return $img->response();
+        }
+        return Response($img);
+        }
+        }
+        
 }
