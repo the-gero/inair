@@ -43,6 +43,13 @@ class FilesController extends Controller
         $file_name = $file->file;
         $user_id=$file->user_id;
         $path = storage_path().'\\app'."\\".Auth::id().'\\files'.'\\'.$file_name;
+
+        /* ::where('status' , 0)
+     ->where(function($q) {
+         $q->where('type', 'private')
+           ->orWhere('type', 'public');
+     })
+     ->get(); */
         if($user_id == Auth::id())
         {
                 if (file_exists($path) ) 
