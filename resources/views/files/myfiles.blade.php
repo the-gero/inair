@@ -13,11 +13,14 @@
             <a href="/file/m2t/{{$file->id}}" >
                 <i class="fa fa-trash" onclick="return confirm('Are you sure to delete this file ?');"></i>
             </a>
+            <a href="/file/download/{{$file->id}}" >
+                <i class="fa fa-trash" onclick="return confirm('Are you sure to delete this file ?');"></i>
+            </a>
         </div>
             <div class="card-body" >
                 @if($file->type == "jpg")
                     {{-- <img src="{{ asset("storage/$file->file")}}">   --}} 
-                    <img class="imgprev" src="{{ url('storage/'.Auth::id().'/files'.'/'.$file->file) }}" alt="{{$file->file }}" >
+                    <img class="imgprev" src="{{url('/files'.'/images'.'/'.$file->file)}}{{-- {{ url('storage/'.Auth::id().'/files'.'/'.$file->file) }} --}}" alt="{{$file->file }}" >
                 @endif
             </div>
         </div>
@@ -31,7 +34,7 @@
     <h3 style="color:white;" align=center>No files uploaded yet click to upload now!</h3>
 </div>
 @endif
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $('.imgprev').on('load',function(){
     $value=$(this).attr('src');
     $.ajax({
@@ -46,5 +49,5 @@
     </script>
     <script type="text/javascript">
     $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-    </script>
+    </script> --}}
 @endsection

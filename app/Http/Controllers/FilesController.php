@@ -160,7 +160,7 @@ class FilesController extends Controller
         return view('files.trash')->with('trash',$trash);
     }
 
-    public function imgprev(Request $request)
+    /* public function imgprev(Request $request)
         {
         if($request->ajax())
         {
@@ -172,6 +172,13 @@ class FilesController extends Controller
         }
         return Response($img);
         }
+        } */
+    public function getImage($filename) {
+        $path = '/var/www/InAir/app/1'.'/files'.'/'.$filename;
+        $type = "image/jpeg";
+        header('Content-Type:'.$type);
+        header('Content-Length: ' . filesize($path));
+        readfile($path);
+    
         }
-        
 }
