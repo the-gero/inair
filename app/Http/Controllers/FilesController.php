@@ -9,6 +9,7 @@ use App\Files;
 use App\Trash;
 use File;
 use Storage;
+use Response;
 class FilesController extends Controller
 {
     /**
@@ -36,11 +37,20 @@ class FilesController extends Controller
     {
         return view('files.upload');
     }
-    public function getDownload(Request $request)
-    {
-        
-        $file="storage/".Auth::id()."/info.pdf";
-        return Response::download($file);
+    public function getDownload($id)
+    {   
+        $file = Files::find($id);
+        $file_name = $file->file;
+        $user_id=$file->user_id;
+        $path = storage_path().'\\app'."\\".Auth::id().'\\files'.'\\'.$file_name;
+        if($user_id == Auth::id())
+        {
+                if (file_exists($path) ) 
+                {
+                    return Response::download($path);
+                }
+        }
+        return redirect('/')->with('error','Access Denied');
     }
     /**
      * Store a newly created resource in storage.
@@ -61,10 +71,11 @@ class FilesController extends Controller
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
             // Upload Image
             $path = $request->file('file')->storeAs(''.Auth::id().'/files', $fileNameToStore);
-            $post = new Files;
-            $post->file = $fileNameToStore;
-            $post->type = $extension;
-            $post->save();
+            $savefle = new Files;
+            $savefle->user_id = Auth::id();
+            $savefle->file = $fileNameToStore;
+            $savefle->type = $extension;
+            $savefle->save();
             return back()->with('success', 'Uploaded');
         }
         
@@ -130,6 +141,7 @@ class FilesController extends Controller
             {
                 $filename->delete();
                 $file = new Trash;
+                $file->user_id = Auth::id();
                 $file->file = $filename->file;
                 $file->type = $filename->type;
                 $file->save();
@@ -146,6 +158,7 @@ class FilesController extends Controller
             {
                 $filename->delete();
                 $file = new Files;
+                $file->user_id = Auth::id();
                 $file->file = $filename->file;
                 $file->type = $filename->type;
                 $file->save();

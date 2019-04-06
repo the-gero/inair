@@ -14,7 +14,7 @@
                 <i class="fa fa-trash" onclick="return confirm('Are you sure to delete this file ?');"></i>
             </a>
             <a href="/file/download/{{$file->id}}" >
-                <i class="fa fa-trash" onclick="return confirm('Are you sure to delete this file ?');"></i>
+                <i class="fa fa-download" onclick="return confirm('Are you sure to Download this file ?');"></i>
             </a>
         </div>
             <div class="card-body" >

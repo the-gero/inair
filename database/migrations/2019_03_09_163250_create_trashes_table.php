@@ -15,6 +15,7 @@ class CreateTrashesTable extends Migration
     {
         Schema::create('trashes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->string('file');
             $table->string('type');
             $table->timestamps();
