@@ -17,7 +17,7 @@ class CreateSharedsTable extends Migration
             $table->increments('id');
             $table->string('owner');
             $table->string('shared_with');
-            $table->string('fileshared');
+            $table->string('file_shared');
             $table->timestamps();
         });
     }

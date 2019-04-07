@@ -18,10 +18,9 @@
             </a>
         </div>
             <div class="card-body" >
-                <a href="/file/preview/{{$file->id}}" target="_blank" > Preview </a>
                 @if($file->type == "jpg")
                     {{-- <img src="{{ asset("storage/$file->file")}}">   --}} 
-                    <a href="/file/preview/{{$file->id}}" target="_blank" ><img class="imgprev" src="{{url('/files'.'/images'.'/'.$file->file)}}{{-- {{ url('storage/'.Auth::id().'/files'.'/'.$file->file) }} --}}" alt="{{$file->file }}" ></a>
+                    <img class="imgprev" src="{{url('/files'.'/images'.'/'.$file->file)}}{{-- {{ url('storage/'.Auth::id().'/files'.'/'.$file->file) }} --}}" alt="{{$file->file }}" >
                 @endif
             </div>
         </div>

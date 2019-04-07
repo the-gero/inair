@@ -123,6 +123,7 @@
         <div id="mySidenav" class="sidenav" >
             <a href="/file">My Files</a>
             <a href="/file/create">Upload</a>
+            <a href="/file/swm">Shared with me</a>
             <a href="/file/manage">Manage</a>
             <a href="/file/trash">Trash</a>
             <a href="/help">Help</a>
