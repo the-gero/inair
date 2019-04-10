@@ -16,8 +16,8 @@
             <a href="/file/download/{{$file->id}}" >
                 <i class="fa fa-download" onclick="return confirm('Are you sure to Download this file ?');"></i>
             </a>
-            <a href="/file/download/{{$file->id}}" >
-                <i class="fa fa-share" onclick="return confirm('Do you want to share this file ?');"></i>
+            <a href="#" >
+                <i class="fa fa-share" data-toggle="modal" data-target="#myModal" onclick="return confirm('Do you want to share this file ?');"></i>
             </a>
         </div>
             <div class="card-body" >
@@ -31,6 +31,27 @@
 </div>
    
 @endforeach
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 </div> 
 @else
 <div class="container align-items-center">
