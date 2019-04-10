@@ -30,8 +30,7 @@
 </div> 
 @else
 <div class="container align-items-center">
-    <a href="/file/create"><h1 style="font-size:6rem; color:white;" align=center><i class="fa fa-upload "></i></h1></a>
-    <h3 style="color:white;" align=center>No files uploaded yet click to upload now!</h3>
+    <h3 style="color:white;" align=center>No files Shared with you</h3>
 </div>
 @endif
 {{-- <script type="text/javascript">

@@ -36,7 +36,14 @@ class FilesController extends Controller
      */
     public function create()
     {
+        $files = Files::orderBy('created_at','desc')->where('user_id',Auth::id())->paginate(10);
+
         return view('files.upload');
+    }
+    public function swm()
+    {
+        $files = Shared::orderBy('created_at','desc')->where('shared_with',Auth::id())->paginate(10);
+        return view('files.sharedwithme')->with('files',$files);         
     }
     public function getDownload($id)
     {   

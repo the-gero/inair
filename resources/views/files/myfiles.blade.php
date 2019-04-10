@@ -16,6 +16,9 @@
             <a href="/file/download/{{$file->id}}" >
                 <i class="fa fa-download" onclick="return confirm('Are you sure to Download this file ?');"></i>
             </a>
+            <a href="/file/download/{{$file->id}}" >
+                <i class="fa fa-share" onclick="return confirm('Do you want to share this file ?');"></i>
+            </a>
         </div>
             <div class="card-body" >
                 <a href="/file/preview/{{$file->id}}" target="_blank" > Preview </a>
