@@ -28,7 +28,7 @@
               z-index: 1;
               top: 0;
               left: 0;
-              background-color: #111;
+              background-color: white;
               overflow-x: hidden;
               transition: 0.5s;
               padding-top: 60px;
@@ -45,7 +45,7 @@
             }
             
             .sidenav a:hover {
-              color: #f1f1f1;
+              color: #111;
             }
             
             .sidenav .closebtn {
@@ -63,7 +63,8 @@
             </style>
 
 </head>
-<body style="background :url('https://thewallpapers.org/zoom/57495/cloud_storage.jpg');background-repeat: no-repeat;background-size: cover;">
+{{-- <body style="background :url('https://thewallpapers.org/zoom/57495/cloud_storage.jpg');background-repeat: no-repeat;background-size: cover;"> --}}
+    <body style="background :orange">
     <div id="app" >
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top" >
             <div class="container">

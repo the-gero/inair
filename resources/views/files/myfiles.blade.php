@@ -43,7 +43,10 @@
         <h4 class="modal-title">Share file</h4>
       </div>
       <div class="modal-body">
-      <input type="text" name="owner" value="{{$file->user_id}}">
+      <input type="text" name="owner" value="{{$file->user_id}}" hidden>
+      <input type="text" name="file_id" value="{{$file->id}}" hidden>
+      <input type="text" name="file_name" value="{{$file->file}}" hidden>
+      <input type="text" class="form-control" name="shared_with"  >
           <label for="sharewith"></label>
       </div>
       <div class="modal-footer">
