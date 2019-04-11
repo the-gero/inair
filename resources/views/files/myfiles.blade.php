@@ -11,14 +11,14 @@
         <div class="card">
         <div class="card-header text-center" style="height:10vh;">{{$file->file }} 
             <a href="/file/m2t/{{$file->id}}" >
-                <i class="fa fa-trash" onclick="return confirm('Are you sure to delete this file ?');"></i>
+                <i class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this file ?');"></i>
             </a>
             <a href="/file/download/{{$file->id}}" >
-                <i class="fa fa-download" onclick="return confirm('Are you sure to Download this file ?');"></i>
+                <i class="fa fa-download" onclick="return confirm('Are you sure you want to Download this file ?');"></i>
             </a>
-            <a href="#" >
-                <i class="fa fa-share" data-toggle="modal" data-target="#myModal" onclick="return confirm('Do you want to share this file ?');"></i>
-            </a>
+            <button href="#myModal{{$file->id}}" data-toggle="modal" data-target="#myModal{{$file->id}}">
+            <i class="fa fa-share"  ></i>
+            </button>
         </div>
             <div class="card-body" >
                 <a href="/file/preview/{{$file->id}}" target="_blank" > Preview </a>
@@ -29,34 +29,39 @@
             </div>
         </div>
 </div>
-   
+  
 @endforeach
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <form action="" method="post">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        
-        <h4 class="modal-title">Share file</h4>
-      </div>
-      <div class="modal-body">
-      <input type="text" name="owner" value="{{$file->user_id}}" hidden>
-      <input type="text" name="file_id" value="{{$file->id}}" hidden>
-      <input type="text" name="file_name" value="{{$file->file}}" hidden>
-      <input type="text" class="form-control" name="shared_with"  >
-          <label for="sharewith"></label>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-</form>
-  </div>
-</div>
+
 </div> 
+@foreach ($files as $file)
+<!-- Modal -->
+<div id="myModal{{$file->id}}" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <form action="/file/share" method="post">
+              @csrf
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              
+              <h4 class="modal-title">Share {{$file->file}}</h4>
+            </div>
+            <div class="modal-body">
+            <input type="text" name="owner" value="{{$file->user_id}}" hidden>
+            <input type="text" name="file_id" value="{{$file->id}}" hidden>
+            <input type="text" name="file_name" value="{{$file->file}}" hidden>
+            <input type="text" class="form-control" name="shared_with"  placeholder="Enter Email to share with">
+                
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success" >Share</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+      </form>
+        </div>
+      </div>   
+      @endforeach
 @else
 <div class="container align-items-center">
     <a href="/file/create"><h1 style="font-size:6rem; color:white;" align=center><i class="fa fa-upload "></i></h1></a>

@@ -52,31 +52,29 @@ class FilesController extends Controller
         $file_name = $file->file;
         $user_id=$file->user_id;
         $path = storage_path().'\\app'."\\".$user_id.'\\files'.'\\'.$file_name;
-        $shared = Shared::where('file_shared',$file_name)->where('owner',$user_id)->first();
-        /* ::where('status' , 0)
-     ->where(function($q) {
-         $q->where('type', 'private')
-           ->orWhere('type', 'public');
-     })
-     ->get(); */
+        $shareds = Shared::where('file_name',$file_name)->where('owner',$user_id)->get();
         if($user_id == Auth::id() )
-        {
+            {
+                    if (file_exists($path) ) 
+                    {
+                        return Response::download($path);
+                    }
+            }
+        foreach ($shareds as $shared) 
+        {    
+        
+            
+            if( $shared->shared_with == Auth::id() ) { 
+                
                 if (file_exists($path) ) 
                 {
+                    
                     return Response::download($path);
                 }
-        }
-        else if( Auth::id() == $shared->shared_with ) { 
-            
-            if (file_exists($path) ) 
-            {
-                
-                return Response::download($path);
             }
+            
         }
-        else{
-            return redirect('/')->with('error',"Access Denied");
-        }
+                return redirect('/')->with('error',"Access Denied");
         
     }
     /**
@@ -133,7 +131,8 @@ class FilesController extends Controller
     
     public function manage()
     {
-        return view('files.manage');
+        $files = Shared::orderBy('created_at','desc')->where('owner',Auth::id())->paginate(10);
+        return view('files.manage')->with('files',$files);
     }
     /**
      * Update the specified resource in storage.
@@ -223,7 +222,7 @@ class FilesController extends Controller
         $file_name = $file->file;
         $user_id=$file->user_id;
         $path = storage_path().'\\app'."\\".$user_id.'\\files'.'\\'.$file_name;
-        $shared = Shared::where('file_shared',$file_name)->where('owner',$user_id)->first();
+        $shared = Shared::where('file_name',$file_name)->where('owner',$user_id)->first();
         /* ::where('status' , 0)
      ->where(function($q) {
          $q->where('type', 'private')

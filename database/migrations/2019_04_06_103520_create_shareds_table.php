@@ -16,7 +16,9 @@ class CreateSharedsTable extends Migration
         Schema::create('shareds', function (Blueprint $table) {
             $table->increments('id');
             $table->string('owner');
+            $table->string('owner_email');
             $table->string('shared_with');
+            $table->string('shared_with_email');
             $table->string('file_id');
             $table->string('file_name');
             $table->timestamps();
