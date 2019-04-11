@@ -16,3 +16,4 @@ Route::get('/file/download/{id}', 'FilesController@getDownload');
 Route::get('/file/preview/{id}', 'FilesController@getPrev');
 Route::post('/file/share','ManageFilesController@addshare');
 Route::resource('/file','FilesController');
+Route::get('/gts', 'ManageFilesController@gts');

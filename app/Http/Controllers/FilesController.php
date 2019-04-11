@@ -8,6 +8,7 @@ use Auth;
 use App\Files;
 use App\Trash;
 use App\Shared;
+use DB;
 use File;
 use Storage;
 use Response;
@@ -25,8 +26,19 @@ class FilesController extends Controller
     public function index()
     {
         $files = Files::orderBy('created_at','desc')->where('user_id',Auth::id())->paginate(10);
-
-        return view('files.myfiles')->with('files',$files);                                                                                                           
+        $filess=DB::table('files')->where('user_id',Auth::id())->get();
+        $trashs=DB::table('trashes')->where('user_id',Auth::id())->get();
+        $trashsize =0;
+        $myfilessize=0;
+        foreach ($filess as $file) {
+            $myfilessize = $myfilessize + Storage::size(Auth::id().'/files'.'/'.$file->file);
+        }
+        foreach ($trashs as $trash) {
+            $trashsize = $trashsize + Storage::size(Auth::id().'/trash'.'/'.$trash->file);
+        }
+        $totalsize= bcadd($trashsize , $myfilessize, 3) /1073741824 ;
+        
+        return view('files.myfiles')->with('files',$files)->with('totalsize',number_format((float)$totalsize, 3, '.', '')."GB");                                                                                                           
     }
 
     /**
@@ -223,12 +235,7 @@ class FilesController extends Controller
         $user_id=$file->user_id;
         $path = storage_path().'\\app'."\\".$user_id.'\\files'.'\\'.$file_name;
         $shared = Shared::where('file_name',$file_name)->where('owner',$user_id)->first();
-        /* ::where('status' , 0)
-     ->where(function($q) {
-         $q->where('type', 'private')
-           ->orWhere('type', 'public');
-     })
-     ->get(); */
+        
         if($user_id == Auth::id() )
         {
                 if (file_exists($path) ) 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use DB;
 use App\Files;
 use App\Trash;
 use App\Shared;
@@ -64,4 +65,32 @@ class ManageFilesController extends Controller
             }
         }
     }
+
+    public function gts(Request $request)
+    {
+        $files=DB::table('files')->where('user_id',Auth::id())->get();
+        $trashs=DB::table('trashes')->where('user_id',Auth::id())->get();
+        $trashsize =0;
+        $myfilessize=0;
+        foreach ($files as $file) {
+            $myfilessize = $myfilessize + Storage::size(Auth::id().'/files'.'/'.$file->file);
+        }
+        foreach ($trashs as $trash) {
+            $trashsize = $trashsize + Storage::size(Auth::id().'/trash'.'/'.$trash->file);
+        }
+        $totalsize= bcadd($trashsize , $myfilessize, 3) /1073741824 ;
+        
+        if($request->ajax())
+        {
+       
+        
+            
+            return Response($files);
+        
+         
+        }
+        
+        //return number_format((float)$totalsize, 3, '.', '')."GB"; */
+    }
+    
 }

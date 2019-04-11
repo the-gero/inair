@@ -10,7 +10,10 @@
 <div class='col-md-3' style="height:25vh; " >
         <div class="card">
         <div class="card-header text-center" style="height:10vh;">{{$file->file }} 
-            <a href="/file/m2t/{{$file->id}}" >
+            
+        </div>
+            <div class="card-body" >
+                <a href="/file/m2t/{{$file->id}}" >
                 <i class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this file ?');"></i>
             </a>
             <a href="/file/download/{{$file->id}}" >
@@ -19,8 +22,6 @@
             <button href="#myModal{{$file->id}}" data-toggle="modal" data-target="#myModal{{$file->id}}">
             <i class="fa fa-share"  ></i>
             </button>
-        </div>
-            <div class="card-body" >
                 <a href="/file/preview/{{$file->id}}" target="_blank" > Preview </a>
                 @if($file->type == "jpg")
                     {{-- <img src="{{ asset("storage/$file->file")}}">   --}} 
@@ -68,6 +69,7 @@
     <h3 style="color:white;" align=center>No files uploaded yet click to upload now!</h3>
 </div>
 @endif
+<input id="size" value={{$totalsize}}>
 {{-- <script type="text/javascript">
     $('.imgprev').on('load',function(){
     $value=$(this).attr('src');

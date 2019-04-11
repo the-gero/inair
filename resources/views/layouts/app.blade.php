@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -133,11 +133,27 @@
         <main class="py-4 col" onclick="closeNav()" href="javascript:void(0)" >
             <div class="container " style="margin-top:10vh; " onclick="closeNav()" href="javascript:void(0)" >
                 @include('inc.messages')
-            @yield('content')
+            @yield('content')<input id="size" value="of 2GB" disabled>
             </div>
+            
         </main>
     </div>
-</body>
+</body><script type="text/javascript">
+            $('#size').on('load',function(){
+            $value=$(this).val();
+            $.ajax({
+            type : 'get',
+            url : '{{URL::to('gts')}}',
+            data:{'search':$value},
+            success:function(data){
+            $('#size').attr('value',data);
+            }
+            });
+            })
+            </script>
+            <script type="text/javascript">
+            $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+            </script>
 <script>
         function openNav() {
           document.getElementById("mySidenav").style.width = "250px";
@@ -147,4 +163,5 @@
           document.getElementById("mySidenav").style.width = "0";
         }
         </script>
+        
 </html>
