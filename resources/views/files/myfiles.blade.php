@@ -35,21 +35,22 @@
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
+    <form action="" method="post">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Share file</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+      <input type="text" name="owner" value="{{$file->user_id}}">
+          <label for="sharewith"></label>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div>
-
+</form>
   </div>
 </div>
 </div> 

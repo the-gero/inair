@@ -9,7 +9,7 @@
 
 <div class='col-md-3' style="height:25vh; " >
         <div class="card">
-        <div class="card-header text-center" style="height:10vh;">{{$file->file }} 
+        <div class="card-header text-center" style="height:10vh;">{{$file->file_shared }} 
             <a href="/file/m2t/{{$file->id}}" >
                 <i class="fa fa-trash" onclick="return confirm('Are you sure to delete this file ?');"></i>
             </a>
