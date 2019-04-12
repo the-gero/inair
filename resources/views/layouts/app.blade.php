@@ -63,8 +63,8 @@
             </style>
 
 </head>
-{{-- <body style="background :url('https://thewallpapers.org/zoom/57495/cloud_storage.jpg');background-repeat: no-repeat;background-size: cover;"> --}}
-    <body style="background :orange">
+    
+    <body style="background :url('{{ asset("onedrive.jpg") }}');background-repeat: no-repeat;background-size: cover;">
     <div id="app" >
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top" >
             <div class="container">
@@ -133,7 +133,7 @@
         <main class="py-4 col" onclick="closeNav()" href="javascript:void(0)" >
             <div class="container " style="margin-top:10vh; " onclick="closeNav()" href="javascript:void(0)" >
                 @include('inc.messages')
-            @yield('content')<input id="size" value="of 2GB" disabled>
+            @yield('content')
             </div>
             
         </main>

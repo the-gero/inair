@@ -9,10 +9,10 @@
 
 <div class='col-md-3' style="height:25vh; " >
         <div class="card">
-        <div class="card-header text-center" style="height:10vh;">{{$file->file }} 
+        <div class="card-header text-center" style="height:10vh;background:grey;">{{$file->file }} 
             
         </div>
-            <div class="card-body" >
+            <div class="card-body" style="background:lightgrey" >
                 <a href="/file/m2t/{{$file->id}}" >
                 <i class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this file ?');"></i>
             </a>
@@ -69,21 +69,6 @@
     <h3 style="color:white;" align=center>No files uploaded yet click to upload now!</h3>
 </div>
 @endif
-<input id="size" value={{$totalsize}}>
-{{-- <script type="text/javascript">
-    $('.imgprev').on('load',function(){
-    $value=$(this).attr('src');
-    $.ajax({
-    type : 'get',
-    url : '{{URL::to('imgprev')}}',
-    data:{'search':$value},
-    success:function(data){
-    $('.imgprev').html(data);
-    }
-    });
-    })
-    </script>
-    <script type="text/javascript">
-    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-    </script> --}}
+<label class="float-right" style="margin-top:60vh" >{{$totalsize}} of 2GB used</label>
+
 @endsection

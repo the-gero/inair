@@ -215,19 +215,7 @@ class FilesController extends Controller
         return view('files.trash')->with('trash',$trash);
     }
 
-    /* public function imgprev(Request $request)
-        {
-        if($request->ajax())
-        {
-       
-        if($request->search)
-        {
-            $img = Image::make($request->search);
-            return $img->response();
-        }
-        return Response($img);
-        }
-        } */
+    
     public function getPrev($id) {
         $file = Files::find($id);
         $currentuser = Auth::id();
