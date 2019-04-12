@@ -54,7 +54,7 @@ class FilesController extends Controller
     }
     public function swm()
     {
-        $files = Shared::orderBy('created_at','desc')->where('shared_with',Auth::id())->paginate(10);
+        $files = Shared::orderBy('created_at','desc')->where('shared_with_id',Auth::id())->paginate(10);
         return view('files.sharedwithme')->with('files',$files);         
     }
     public function getDownload($id)
@@ -143,7 +143,7 @@ class FilesController extends Controller
     
     public function manage()
     {
-        $files = Shared::orderBy('created_at','desc')->where('owner',Auth::id())->paginate(10);
+        $files = Shared::orderBy('created_at','desc')->where('owner_id',Auth::id())->paginate(10);
         return view('files.manage')->with('files',$files);
     }
     /**

@@ -22,7 +22,8 @@
                     
                     <img class="imgprev" src="{{url('/files'.'/images'.'/'.$file->file)}}{{-- {{ url('storage/'.Auth::id().'/files'.'/'.$file->file) }} --}}" alt="{{$file->file }}" >
                 @endif
-            <p>Shared with : {{$file->shared_with_email}} on : {{$file->created_at}}</p>
+                <p>Shared with : {{$file->shared_with_name }}</p><p>Email :{{$file->shared_with_email}}</p>
+                <p>On : {{$file->created_at}}</p>
             </div>
         </div>
 </div>

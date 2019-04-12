@@ -21,15 +21,17 @@ class ManageFilesController extends Controller
 
     public function addshare(Request $request)
     {
-        $sharewithemail = User::where('email',$request->shared_with)->first();
-        if($sharewithemail)
+        $shared_with = User::where('email',$request->shared_with)->first();
+        if($shared_with)
             {
-                $sharewithID=$sharewithemail->id;
+                $sharewithID=$shared_with->id;
                 $sharefle = new Shared;
-                $sharefle->owner = Auth::id();
+                $sharefle->owner_id = Auth::id();
+                $sharefle->owner_name = Auth::user()->name;
                 $sharefle->owner_email = Auth::user()->email;
+                $sharefle->shared_with_id = $sharewithID;
+                $sharefle->shared_with_name = $shared_with->name;
                 $sharefle->shared_with_email = $request->shared_with;
-                $sharefle->shared_with = $sharewithID;
                 $sharefle->file_id = $request->file_id;
                 $sharefle->file_name = $request->file_name;
                 $sharefle->save();

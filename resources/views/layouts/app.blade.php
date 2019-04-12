@@ -64,7 +64,7 @@
 
 </head>
     
-    <body style="background :url('{{ asset("onedrive.jpg") }}');background-repeat: no-repeat;background-size: cover;">
+    <body style="background :url('{{ asset("onedrive.jpg") }}');background-repeat:repeat;">
     <div id="app" >
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top" >
             <div class="container">
@@ -127,7 +127,6 @@
             <a href="/file/swm">Shared with me</a>
             <a href="/file/manage">Shared files</a>
             <a href="/file/trash">Trash</a>
-            <a href="/help">Help</a>
         </div>
               
         <main class="py-4 col" onclick="closeNav()" href="javascript:void(0)" >
@@ -138,6 +137,27 @@
             
         </main>
     </div>
+    <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-bottom" >
+        <div class="container float-right">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav mr-auto">
+
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                   <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                   
+                   <li  class="nav-item"><a href="/help" class="nav-link">Help</a></li>
+                    
+                </ul>
+            </div> 
+            
+
+
+        </div>
+    </nav>
 </body><script type="text/javascript">
             $('#size').on('load',function(){
             $value=$(this).val();
