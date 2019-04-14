@@ -64,7 +64,7 @@
 
 </head>
     
-    <body style="background :url('{{ asset("onedrive.jpg") }}');background-repeat:repeat;">
+    <body style="background :url('{{ asset("network.png") }}');background-repeat:no-repeat;background-size:cover;">
     <div id="app" >
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top" >
             <div class="container">
@@ -130,7 +130,7 @@
         </div>
               
         <main class="py-4 col" onclick="closeNav()" href="javascript:void(0)" >
-            <div class="container " style="margin-top:10vh; " onclick="closeNav()" href="javascript:void(0)" >
+            <div class="container " style="margin-top:10vh; background:#55585c80; height:80vh;" onclick="closeNav()" href="javascript:void(0)" >
                 @include('inc.messages')
             @yield('content')
             </div>
@@ -147,7 +147,7 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                   <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                   <li class="nav-tab"><a class="nav-link" href="/">Home</a></li>
                    
                    <li  class="nav-item"><a href="/help" class="nav-link">Help</a></li>
                     

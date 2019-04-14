@@ -65,8 +65,8 @@
       @endforeach
 @else
 <div class="container align-items-center">
-    <a href="/file/create"><h1 style="font-size:6rem; color:white;" align=center><i class="fa fa-upload "></i></h1></a>
-    <h3 style="color:white;" align=center>No files uploaded yet click to upload now!</h3>
+    <a href="/file/create"><h1 style="font-size:6rem; color:white;" align=center><i class="fa fa-upload "></i></h1>
+    <h3 style="color:white;" align=center>No files uploaded yet click to upload now!</h3></a>
 </div>
 @endif
 <label class="float-right" style="margin-top:60vh" >{{$totalsize}} of 2GB used</label>

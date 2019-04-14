@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="row align-items-center" align=center>
+<div class="row  " style="margin-top:0vh" align=center>
 {!! Form::open(['action' => 'FilesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         
         <div class="form-group col-md-3">
