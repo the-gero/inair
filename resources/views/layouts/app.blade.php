@@ -130,7 +130,7 @@
         </div>
               
         <main class="py-4 col" onclick="closeNav()" href="javascript:void(0)" >
-            <div class="container @if(Request::url() === url('/')) d-flex justify-content-center bd-highlight mb-3 @endif" style="margin-top:10vh;  height:80vh;" onclick="closeNav()" href="javascript:void(0)" >
+            <div class="container col @if(Request::url() === url('/') ) d-flex justify-content-center bd-highlight mb-3 @endif" style="margin-top:10vh;  height:80vh;" onclick="closeNav()" href="javascript:void(0)" >
                 @include('inc.messages')
             @yield('content')
             </div>

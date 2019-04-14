@@ -222,7 +222,7 @@ class FilesController extends Controller
         $file_name = $file->file;
         $user_id=$file->user_id;
         $path = storage_path().'\\app'."\\".$user_id.'\\files'.'\\'.$file_name;
-        $shared = Shared::where('file_name',$file_name)->where('owner',$user_id)->first();
+        $shared = Shared::where('file_name',$file_name)->where('owner_id',$user_id)->first();
         
         if($user_id == Auth::id() )
         {

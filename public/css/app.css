@@ -72,11 +72,11 @@
     position: absolute;
     top: 60px;
     left: 0;
-    width: relative;
+    width: 50px;
     right: 0;
-    height: relative;
+    height: 56px;
     content: "";
-    
+    background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
     display: block;
     margin: 0 auto;
     background-size: 100%;
@@ -87,9 +87,9 @@
     position: absolute;
     bottom: 10px;
     left: 0;  pointer-events: none;
-    width: relative;
+    width: 100%;
     right: 0;
-    height: relative;
+    height: 57px;
     content: " or drag it here. ";
     display: block;
     margin: 0 auto;
