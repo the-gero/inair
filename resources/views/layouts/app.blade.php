@@ -64,7 +64,7 @@
 
 </head>
     
-    <body style="background :url('{{ asset("network.png") }}');background-repeat:no-repeat;background-size:cover;">
+    <body style="background :url('{{ asset('sky.jpg') }}');background-repeat:no-repeat;background-size:cover;">
     <div id="app" >
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top" >
             <div class="container">
@@ -130,7 +130,7 @@
         </div>
               
         <main class="py-4 col" onclick="closeNav()" href="javascript:void(0)" >
-            <div class="container col @if(Request::url() === url('/') ) d-flex justify-content-center bd-highlight mb-3 @endif" style="margin-top:10vh;  height:80vh;" onclick="closeNav()" href="javascript:void(0)" >
+            <div class="container-flex  col @if(Request::url() === url('/') ) d-flex justify-content-center bd-highlight mb-3 @endif" style="margin-top:10vh;position:center; margin-left:auto; height:80vh;" onclick="closeNav()" href="javascript:void(0)" >
                 @include('inc.messages')
             @yield('content')
             </div>
