@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content')
-
+<div class="row justify-content-center">
+    <div class="card col-md-4 text-center">
+      <h1>Trash</h1>
+    </div>  
+      
+  </div>
+  <hr>
 <div class="row">
 @foreach ($trash as $file)
 

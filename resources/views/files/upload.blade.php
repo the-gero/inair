@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+<div class="row justify-content-center">
+    <div class="card col-md-4 text-center">
+      <h1>Upload Files</h1>
+    </div>  
+      
+  </div>
+  <hr>
 <div class="box" style=" width: 100%; /*can be in percentage also.*/
 height: auto;
 margin: 0 auto;
@@ -10,7 +17,7 @@ position: right;">
             <div class="col-md-2"></div>
             <div class="col-md-8 align-self-center" >
                 <div class="form-group files color">
-                    <label for="file">Upload Your File </label>
+                    
                     <input required type="file" id="file" name='file' onchange="submitForm();" class="form-control" >
                     <button type="submit" name="sub" id="sub" onclick="return confirm('Are you sure to Upload this file ?');" style="border: 0; background: none;">
                 </div>

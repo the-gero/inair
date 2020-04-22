@@ -1,7 +1,13 @@
 @extends('layouts.app')
 @section('content')
 
-
+<div class="row justify-content-center">
+  <div class="card col-md-4 text-center">
+    <h1>My Files</h1>
+  </div>  
+    
+</div>
+<hr>
 @if(count($files)>0)
 <div class="row">
 @foreach ($files as $file)

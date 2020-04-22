@@ -47,7 +47,7 @@ class ManageFilesController extends Controller
         $shareds = Shared::where('file_id',$id)->get();
         foreach($shareds as $shared)
         {
-            if($shared->shared_with == Auth::id())
+            if($shared->shared_with_id == Auth::id())
             {
                 $shared->delete();
                 return back()->with('error','Your Access has been removed ');
@@ -60,7 +60,7 @@ class ManageFilesController extends Controller
         $shareds = Shared::where('file_id',$id)->get();
         foreach($shareds as $shared)
         {
-            if($shared->owner == Auth::id())
+            if($shared->owner_id == Auth::id())
             {
                 $shared->delete();
                 return back()->with('error','Their Access has been removed ');
