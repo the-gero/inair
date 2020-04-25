@@ -64,7 +64,7 @@ class FilesController extends Controller
         $file_name = $file->file;
         $user_id=$file->user_id;
         $path = storage_path().'\\app'."\\".$user_id.'\\files'.'\\'.$file_name;
-        $shareds = Shared::where('file_name',$file_name)->where('owner',$user_id)->get();
+        $shareds = Shared::where('file_name',$file_name)->where('owner_id',$user_id)->get();
         if($user_id == Auth::id() )
             {
                     if (file_exists($path) ) 
